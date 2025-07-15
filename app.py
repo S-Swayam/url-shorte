@@ -3,11 +3,13 @@ import string
 import random
 import os
 from database import init_db, save_url, get_url, click_count, get_short_code
+from dotenv import load_dotenv
 
 # Create the Flask app
 app = Flask(__name__)
 # Secret key for session and flash messages
-app.secret_key = 'b2e7f8c1-4a3d-4e2b-9c6a-7f1e2d3c4b5a'  # Use a strong random value in production
+load_dotenv()  # Load environment variables from .env file
+app.secret_key = os.getenv('SECRET_KEY')
 
 # Initialize the database and table
 init_db()
